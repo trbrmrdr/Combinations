@@ -7,9 +7,9 @@ var uglify = require('gulp-uglify');
 var browserSync = require('browser-sync').create();
 const javascriptObfuscator = require('gulp-javascript-obfuscator');
 
-const webpack = require('webpack');
-const webpackStream = require('webpack-stream');
-const webpackConfig = require('./webpack.config.js');
+// const webpack = require('webpack');
+// const webpackStream = require('webpack-stream');
+// const webpackConfig = require('./webpack.config.js');
 
 
 gulp.task('scripts', function () {
@@ -24,7 +24,7 @@ gulp.task('scripts', function () {
         //   './lib/*.js'// путь к папке со скриптами
         // "./js/settings.js",
 
-        "./sources/src/app.js",
+        "./sources/app.js",
 
     ])
         // .pipe(babel({
@@ -61,8 +61,8 @@ gulp.task('server', gulp.series('scripts', function (done) {
     });
 
 
-    gulp.watch("./sources/lib/*.js").on('change', gulp.series('js_watch'));
-    gulp.watch("./sources/src/*.*").on('change', gulp.series('js_watch'));
+    // gulp.watch("./sources/lib/*.js").on('change', gulp.series('js_watch'));
+    // gulp.watch("./sources/src/*.*").on('change', gulp.series('js_watch'));
     gulp.watch("./sources/*").on('change', gulp.series('js_watch'));
     gulp.watch("*.js").on('change', browserSync.reload);
 
@@ -77,7 +77,7 @@ gulp.task('default', gulp.series('server'));
 gulp.task('release_src', function () {
 
     return gulp.src([
-        "./sources/src/app.js",
+        "./sources/app.js",
     ])
 
         .pipe(javascriptObfuscator())
